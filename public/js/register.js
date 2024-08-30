@@ -1,5 +1,3 @@
-import { error } from "console"
-
 form.addEventListener("submit", () => {
     const register = {
         email: email.value,
@@ -13,7 +11,7 @@ form.addEventListener("submit", () => {
         }
     }).then(res => res.json())
         .then(data => {
-            if (data.staus == "error") {
+            if (data.status == "error") {
                 success.style.display = "none"
                 error.style.display = "block"
                 error.innerText = data.error
