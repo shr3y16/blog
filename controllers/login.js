@@ -13,7 +13,7 @@ const login = async (req, res) => {
             if (err) throw err;
             if (!result[0] || !await bcrypt.compare(password, result[0].password)) return res.json({ status: "error", error: "Incorrect email or password" })
             else {
-                const token = jwt.sign({ id: result[0].id }, process.env.JWT_SECRET, {
+                const token = jwt.sign({ user_id: result[0].user_id }, process.env.JWT_SECRET, {
                     expiresIn: process.env.JWT_EXPIRES,
                 })
                 const cookieOptions = {
