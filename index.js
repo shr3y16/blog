@@ -8,6 +8,9 @@ import { dirname } from 'path';
 import pageRouter from "./routes/pages.js";
 import authRouter from "./controllers/auth.js";
 import blogRouter from "./routes/blogRouter.js";
+import methodOverride from 'method-override';
+
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
 
 const __filename = fileURLToPath(import.meta.url);

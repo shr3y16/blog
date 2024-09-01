@@ -22,14 +22,25 @@ blogRouter.delete('/:id', loggedIn, (req, res) => {
 blogRouter.post('/', loggedIn, (req, res) => {
     const { title, content } = req.body;
 
-    db.query('INSERT INTO blogs (title, content, user_id) VALUES (?, ?, ?)', 
-        [title, content, req.user.user_id], 
+    db.query('INSERT INTO blogs (title, content, user_id) VALUES (?, ?, ?)',
+        [title, content, req.user.user_id],
         (err, result) => {
             if (err) {
                 return res.status(500).send('Failed to add the blog.');
             }
-            res.redirect('/'); 
+            res.redirect('/');
         });
+});
+
+blogRouter.put('/:id', loggedIn, (req, res) => {
+    const { id } = req.params;
+    const { title, content } = req.body;
+    db.query('UPDATE blogs SET title = ?, content = ? WHERE blog_id = ? AND user_id = ?', [title, content, id, req.user.user_id], (err, result) => {
+        if (err) {
+            res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+        }
+        res.json({ status: 'success' });
+    });
 });
 
 

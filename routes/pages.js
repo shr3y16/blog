@@ -4,15 +4,15 @@ import loggedIn from "../controllers/loggedIn.js";
 const pageRouter = Router();
 
 pageRouter.get("/", loggedIn, (req, res) => {
-    if (req.user) {
-        db.query('SELECT * FROM blogs WHERE user_id = ?', [req.user.user_id], (err, blogs) => {
-            if (err) throw err;
-            res.render('index', { status: "loggedIn", user: req.user, blogs: blogs });
-        });
-    } else {
-        res.render("index", { status: "no", user: "no" });
-    }
 
+    db.query('SELECT * FROM blogs', (err, blogs) => {
+        if (err) throw err;
+        if (req.user) {
+            res.render('index', { status: "loggedIn", user: req.user, blogs: blogs });
+        } else {
+            res.render('index', { status: "no", blogs: blogs });
+        }
+    });
 })
 
 pageRouter.get("/register", (req, res) => {
