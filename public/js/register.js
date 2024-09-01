@@ -19,6 +19,10 @@ form.addEventListener("submit", () => {
                 error.style.display = "none"
                 success.style.display = "block"
                 success.innerText = data.success
+
+                // setTimeout(() => {
+                //     window.location.href = "/login"; //
+                // }, 2500); 
             }
         })
 })

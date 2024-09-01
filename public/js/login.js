@@ -1,4 +1,5 @@
-form.addEventListener("submit", () => {
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
     const login = {
         email: email.value,
         password: password.value,
@@ -19,6 +20,10 @@ form.addEventListener("submit", () => {
                 error.style.display = "none"
                 success.style.display = "block"
                 success.innerText = data.success
+
+                setTimeout(() => {
+                    window.location.href = "/"; // Redirect to the homepage
+                }, 2000); 
             }
         })
 })

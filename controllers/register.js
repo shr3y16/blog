@@ -12,7 +12,7 @@ const register = async (req, res) => {
                 const hashedPassword = await bcrypt.hash(password, 8);
                 db.query('INSERT INTO users SET ?', { email: email, password: hashedPassword }, (error, results) => {
                     if (error) throw error;
-                    return res.json({ status: "success", success: "User Registered" });
+                    return res.json({ status: "success", success: "User Registered, Please Login to Continue" });
                 })
             }
         })
