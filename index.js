@@ -22,11 +22,6 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 app.use(cookie());
 app.use(json());
-
-db.connect((err) => {
-    if (err) throw err;
-});
-
 app.use("/", pageRouter);
 app.use("/auth", authRouter);
 app.use("/blogs", blogRouter);
